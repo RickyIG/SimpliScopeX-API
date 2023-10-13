@@ -1,0 +1,57 @@
+openapi: "3.0.3"
+info:
+  title: SimpliScopeX RESTful API
+  description: An API used to identify simplicia medicinal leaves.
+  contact:
+    name: API Support
+    email: swart.unsil@gmail.com
+  version: "1.0"
+servers:
+  - url: https://rayuan-74y1l31t.ts.gateway.dev
+    description: Production server
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: key
+paths:
+  /prediction:
+    post:
+      tags: ["SimpliScopeX"]
+      summary: Identify the value of a simplicia medicinal leaves
+      description: Getting and predicting the value of a simplicia medicinal leaves
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          'text/plain; charset=utf-8':
+            schema:
+              type: string
+            examples:
+              'Base64 encoded simplicia medicinal leaves image example':
+                value: '/9j/4AAQSkZJRgABAgEASABIAAD/4R8yRXhpZgAATU0AKgAAAAgACwEPAAIAAAAJAAAAkgEQAAIAAAAPAAAAmwESAAMAAAABAAEAAAEaAAUAAAABAAAAqgEbAAUAAAABAAAAsgEoAAMAAAABAAIAAAExAAIAAAAbAAAAugEyAAIAAAAUAAAA1QITAAMAAAABAAIAAIKYAAIAAAAFAAAA6YdpAAQAAAABAAAA8AA...'
+
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  label:
+                    type: string
+                    description: Image assessment value
+                  certainty:
+                    type: string
+                    description: Image assessment certainty value
+              examples:
+                'Success example':
+                  description: Example of a succeed request
+                  value:
+                    {
+                      label: "Great",
+                      certainty: "0.972467312"
+                    }

@@ -1,0 +1,36 @@
+# openapi2-run.yaml
+swagger: '2.0'
+info:
+  title: simpliscopex-ic
+  description: Api to identify a microscopic image.
+  version: 1.0.0
+schemes:
+- https
+produces:
+- application/json
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
+paths:
+  /prediction:
+    post:
+      summary: identify a microscopic image
+      operationId: identifyMicroscopicImage
+      x-google-backend:
+        address: https://simpliscopex-ic-api-ljq2gnzcga-et.a.run.app
+      security:
+        - api_key: []
+      parameters:
+        - in: body
+          name: imagefile
+          required: true
+          schema:
+            type: string
+          description: Image to be rated.
+      responses:
+        '200':
+          description: A successful response
+          schema:
+            type: string
