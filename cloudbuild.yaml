@@ -3,13 +3,13 @@ options:
 steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/simpliscopex-api/simpliscopex-ic-api', '.']
+  args: ['build', '-t', 'gcr.io/simpliscopex/simpliscopex-ic-api', '.']
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/simpliscopex-api/simpliscopex-ic-api']
+  args: ['push', 'gcr.io/simpliscopex/simpliscopex-ic-api']
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'simpliscopex-ic-api', '--image', 'gcr.io/simpliscopex-api/simpliscopex-ic-api', '--region', 'asia-southeast2', '--port', '80']
+  args: ['run', 'deploy', 'simpliscopex-ic-api', '--image', 'gcr.io/simpliscopex/simpliscopex-ic-api', '--region', 'asia-southeast2', '--port', '80']
 images:
-- gcr.io/simpliscopex-api/simpliscopex-ic-api
+- gcr.io/simpliscopex/simpliscopex-ic-api
