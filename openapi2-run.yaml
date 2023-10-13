@@ -19,7 +19,7 @@ paths:
       summary: identify a microscopic image
       operationId: identifyMicroscopicImage
       x-google-backend:
-        address: https://simpliscopex-ic-api-ljq2gnzcga-et.a.run.app
+        address: https://simpliscopex-ic-api-ivrnsoakka-et.a.run.app
       security:
         - api_key: []
       parameters:
